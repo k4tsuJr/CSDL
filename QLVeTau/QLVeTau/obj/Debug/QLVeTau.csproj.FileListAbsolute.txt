@@ -1,0 +1,13 @@
+E:\C#\QLVeTau\QLVeTau\bin\Debug\QLVeTau.exe.config
+E:\C#\QLVeTau\QLVeTau\bin\Debug\QLVeTau.exe
+E:\C#\QLVeTau\QLVeTau\bin\Debug\QLVeTau.pdb
+E:\C#\QLVeTau\QLVeTau\bin\Debug\Guna.UI2.dll
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.AssemblyReference.cache
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.SuggestedBindingRedirects.cache
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.Form1.resources
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.Properties.Resources.resources
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.GenerateResource.cache
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CoreCompileInputs.cache
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CopyComplete
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.exe
+E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.pdb
