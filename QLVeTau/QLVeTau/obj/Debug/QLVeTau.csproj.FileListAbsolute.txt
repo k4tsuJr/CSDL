@@ -11,3 +11,16 @@ E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CoreCompileInputs.cache
 E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CopyComplete
 E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.exe
 E:\C#\QLVeTau\QLVeTau\obj\Debug\QLVeTau.pdb
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\bin\Debug\QLVeTau.exe.config
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\bin\Debug\QLVeTau.exe
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\bin\Debug\QLVeTau.pdb
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\bin\Debug\Guna.UI2.dll
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.AssemblyReference.cache
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.SuggestedBindingRedirects.cache
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.Form1.resources
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.Properties.Resources.resources
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.GenerateResource.cache
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CoreCompileInputs.cache
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.csproj.CopyComplete
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.exe
+C:\Users\ndtha\OneDrive\Documents\GitHub\CSDL\QLVeTau\QLVeTau\obj\Debug\QLVeTau.pdb

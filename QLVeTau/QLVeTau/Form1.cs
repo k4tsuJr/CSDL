@@ -24,6 +24,8 @@ namespace QLVeTau
         {
             dataInfoPassenger.DataSource = getDataGridPassenger().Tables[0];
             dataInfoStaff.DataSource = getDataGridStaff().Tables[0];
+            dataTicketType.DataSource = getDataGridStickerType().Tables[0];
+            dataSale.DataSource = getDataGridSale().Tables[0];
         }
         #region[Hành khách]
         DataSet getQueryPassenger()
@@ -266,7 +268,7 @@ namespace QLVeTau
         }
 
         #endregion
-
+        #region[Nhân viên]
         private void showInfoStaff(object sender, DataGridViewCellEventArgs e)
         {
             int i;
@@ -359,6 +361,216 @@ namespace QLVeTau
                 dataInfoStaff.DataSource = getDataGridStaff().Tables[0];
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion
+        #region[Loại vé]
+        DataSet getDataGridStickerType()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM LOAIVE";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+
+        private void showInfoTicketType(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            i = dataTicketType.CurrentRow.Index;
+            txtIDTicketType.Text = dataTicketType.Rows[i].Cells[0].Value.ToString();
+            txtNameTypeTicket.Text = dataTicketType.Rows[i].Cells[1].Value.ToString();
+            txtDescriptionTicketType.Text = dataTicketType.Rows[i].Cells[2].Value.ToString();
+            txtPriceTicketType.Text = dataTicketType.Rows[i].Cells[3].Value.ToString();
+        }
+        void addTicketType()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("INSERT INTO LOAIVE (TENLOAIVE, MOTA, GIATIEN) VALUES (@tenLoaiVe, @moTa, @giaTien)", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@tenLoaiVe", SqlDbType.NVarChar, 50)).Value = txtNameTypeTicket.Text;
+                    command.Parameters.Add(new SqlParameter("@moTa", SqlDbType.NVarChar, 100)).Value = txtDescriptionTicketType.Text;
+                    command.Parameters.Add(new SqlParameter("@giaTien", SqlDbType.Decimal)).Value = txtPriceTicketType.Text;
+    
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        void editTicketType()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("UPDATE LOAIVE SET TENLOAIVE = @tenLoaiVe, MOTA = @moTa, GIATIEN = @giaTien WHERE ID_LOAIVE = @idLoaiVe", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@idLoaiVe", SqlDbType.Int)).Value = txtIDTicketType.Text;
+                    command.Parameters.Add(new SqlParameter("@tenLoaiVe", SqlDbType.NVarChar, 50)).Value = txtNameTypeTicket.Text;
+                    command.Parameters.Add(new SqlParameter("@moTa", SqlDbType.NVarChar, 100)).Value = txtDescriptionTicketType.Text;
+                    command.Parameters.Add(new SqlParameter("@giaTien", SqlDbType.Decimal)).Value = txtPriceTicketType.Text;
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        int idLoaiVe;
+        void delTicketType()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("DELETE FROM LOAIVE WHERE ID_LOAIVE = @idLoaiVe", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter parameter = new SqlParameter("@idLoaiVe", SqlDbType.Int);
+                    parameter.Value = idLoaiVe;
+                    command.Parameters.Add(parameter);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        private void btnAddTicketType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                addTicketType();
+                dataTicketType.DataSource = getDataGridStickerType().Tables[0];
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnEditTicketType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                editTicketType();
+                dataTicketType.DataSource = getDataGridStickerType().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private void btnDelTicketType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                delTicketType();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion
+
+        DataSet getDataGridSale()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM GIAMGIA";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+
+        private void showInfoSale(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            i = dataSale.CurrentRow.Index;
+            txtIDSale.Text = dataSale.Rows[i].Cells[0].Value.ToString();
+            txtNameSale.Text = dataSale.Rows[i].Cells[1].Value.ToString();
+            txtDescriptionSale.Text = dataSale.Rows[i].Cells[2].Value.ToString();
+            txtRateSale.Text = dataSale.Rows[i].Cells[3].Value.ToString();
+            txtDateStartSale.Text = dataSale.Rows[i].Cells[4].Value.ToString();
+            txtDateFinishSale.Text = dataSale.Rows[i].Cells[5].Value.ToString();
+        }
+        void addSale()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("INSERT INTO GIAMGIA (TENGIAMGIA, MOTA, TYLEGIAM, BATDAU, KETTHUC) VALUES (@TENGIAMGIA, @MOTA, @TYLEGIAM, @BATDAU, @KETTHUC)", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@TENGIAMGIA", SqlDbType.NVarChar, 100)).Value = txtNameSale.Text;
+                    command.Parameters.Add(new SqlParameter("@MOTA", SqlDbType.NVarChar, 255)).Value = txtDescriptionSale.Text;
+                    command.Parameters.Add(new SqlParameter("@TYLEGIAM", SqlDbType.Decimal)).Value = txtRateSale.Text;
+                    command.Parameters.Add(new SqlParameter("@BATDAU", SqlDbType.DateTime, 5)).Value = txtDateStartSale.Text;
+                    command.Parameters.Add(new SqlParameter("@KETTHUC", SqlDbType.DateTime)).Value = txtDateFinishSale.Text;                    
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+                  
+                }
+            }
+        }
+        void editSale()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("UPDATE GIAMGIA SET TENGIAMGIA = @TENGIAMGIA, MOTA = @MOTA, TYLEGIAM = @TYLEGIAM, BATDAU = @BATDAU, KETTHUC = @KETTHUC WHERE ID_GIAMGIA = @ID_GIAMGIA", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@ID_GIAMGIA", SqlDbType.Int)).Value = txtIDSale.Text;
+                    command.Parameters.Add(new SqlParameter("@TENGIAMGIA", SqlDbType.NVarChar, 100)).Value = txtNameSale.Text;
+                    command.Parameters.Add(new SqlParameter("@MOTA", SqlDbType.NVarChar, 255)).Value = txtDescriptionSale.Text;
+                    command.Parameters.Add(new SqlParameter("@TYLEGIAM", SqlDbType.Decimal)).Value = txtRateSale.Text;
+                    command.Parameters.Add(new SqlParameter("@BATDAU", SqlDbType.DateTime, 5)).Value = txtDateStartSale.Text;
+                    command.Parameters.Add(new SqlParameter("@KETTHUC", SqlDbType.DateTime)).Value = txtDateFinishSale.Text;
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+        }
+        private void btnAddSale_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                addSale();
+                dataSale.DataSource = getDataGridSale().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnEditSale_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                editSale();
+                dataSale.DataSource = getDataGridSale().Tables[0];
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
