@@ -26,6 +26,10 @@ namespace QLVeTau
             dataInfoStaff.DataSource = getDataGridStaff().Tables[0];
             dataTicketType.DataSource = getDataGridStickerType().Tables[0];
             dataSale.DataSource = getDataGridSale().Tables[0];
+            dataTrainStation.DataSource = getDataTrainStation().Tables[0];
+            dataTrain.DataSource = getDataTrain().Tables[0];
+            dataSchedule.DataSource = getDataSchedule().Tables[0];
+            dataTicket.DataSource = getDataTicket().Tables[0];
         }
         #region[Hành khách]
         DataSet getQueryPassenger()
@@ -574,6 +578,70 @@ namespace QLVeTau
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+        DataSet getDataTrainStation()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM GA";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+        DataSet getDataTrain()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM TAU";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+        DataSet getDataSchedule()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM LICHTRINH";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+        DataSet getDataTicket()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM VE";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
         }
     }
 }
