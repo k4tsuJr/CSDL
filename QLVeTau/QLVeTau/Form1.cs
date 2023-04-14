@@ -30,6 +30,7 @@ namespace QLVeTau
             dataTrain.DataSource = getDataTrain().Tables[0];
             dataSchedule.DataSource = getDataSchedule().Tables[0];
             dataTicket.DataSource = getDataTicket().Tables[0];
+            dataCancel.DataSource = getDataCancel().Tables[0];
         }
         #region[Hành khách]
         DataSet getQueryPassenger()
@@ -595,6 +596,42 @@ namespace QLVeTau
             }
             return data;
         }
+        void addTrainStation()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("INSERT INTO GA(TENGA, DIACHI) VALUES (@TENGA, @DIACHI)", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@TENGA", SqlDbType.NVarChar, 100)).Value = txtNameStation.Text;
+                    command.Parameters.Add(new SqlParameter("@DIACHI", SqlDbType.NVarChar, 100)).Value = txtAdressTrainStation.Text;
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+        }
+        private void showInfoTrainStation(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            i = dataTrainStation.CurrentRow.Index;
+            txtIDTrainStation.Text = dataTrainStation.Rows[i].Cells[0].Value.ToString();
+            txtNameStation.Text = dataTrainStation.Rows[i].Cells[1].Value.ToString();
+            txtAdressTrainStation.Text = dataTrainStation.Rows[i].Cells[2].Value.ToString();
+        }
+        private void btnAddTrainStation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                addTrainStation();
+                dataTrainStation.DataSource = getDataTrainStation().Tables[0];
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
         DataSet getDataTrain()
         {
             DataSet data = new DataSet();
@@ -610,6 +647,31 @@ namespace QLVeTau
                 connection.Close();
             }
             return data;
+        }
+        void addTrain()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("INSERT INTO TAU (LOAITAU, TENTAU, SOTOAGIUONG, SOTOAGHE, SOGIUONG, SOGHE) VALUES (@LOAITAU, @TENTAU, @SOTOAGIUONG, @SOTOAGHE, @SOGIUONG, @SOGHE)", connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@LOAITAU", SqlDbType.Int)).Value = txtIDSale.Text;
+                    command.Parameters.Add(new SqlParameter("@TENTAU", SqlDbType.NVarChar, 100)).Value = txtNameSale.Text;
+                    command.Parameters.Add(new SqlParameter("@SOTOAGIUONG", SqlDbType.NVarChar, 255)).Value = txtDescriptionSale.Text;
+                    command.Parameters.Add(new SqlParameter("@SOTOAGHE", SqlDbType.Decimal)).Value = txtRateSale.Text;
+                    command.Parameters.Add(new SqlParameter("@SOGIUONG", SqlDbType.DateTime, 5)).Value = txtDateStartSale.Text;
+                    command.Parameters.Add(new SqlParameter("@SOGHE", SqlDbType.DateTime)).Value = txtDateFinishSale.Text;
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+        }
+        
+        private void btnAddTrain_Click_1(object sender, EventArgs e)
+        {
+
         }
         DataSet getDataSchedule()
         {
@@ -643,5 +705,23 @@ namespace QLVeTau
             }
             return data;
         }
+        DataSet getDataCancel()
+        {
+            DataSet data = new DataSet();
+
+            string query = "SELECT * FROM HUY";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.Fill(data);
+
+                connection.Close();
+            }
+            return data;
+        }
+
+       
     }
 }
